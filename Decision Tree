@@ -1,0 +1,23 @@
+
+install.packages("rpart.plot")
+library(rpart)
+library(rpart.plot)
+
+# -------------------- Decision Tree: CART ----------------------------------#
+
+# read data
+
+data_cart <- read.csv("http://dni-institute.in/blogs/wp-content/uploads/2017/07/dt_data.csv")
+
+# Building a Decision Tree
+
+table(data_cart$Spend_Drop_over50pct)/nrow(data_cart)
+
+names(data_cart)
+
+cart_dt <- rpart(Spend_Drop_over50pct~ Gender+Education_level+Last_Month_spend+
+               Last_3m_avg_spend,
+             data=data_cart)
+
+
+rpart.plot(cart_dt)
